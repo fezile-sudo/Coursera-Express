@@ -7,11 +7,14 @@ var morgan = require('morgan');
 
 var bodyParser = require('body-parser');
 
+var dishRouter = require('./routes/dishRouter');
+
 var hostname = 'localhost';
 var port = 3000;
 var app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use('/dishes', dishRouter);
 app.all('/dishes', function (req, res, next) {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
